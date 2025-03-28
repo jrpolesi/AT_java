@@ -15,7 +15,7 @@ public class Aluno {
         this.nota3 = nota3;
     }
 
-    public double calcularMedia() {
+    private double calcularMedia() {
         return (nota1 + nota2 + nota3) / 3;
     }
 
@@ -24,6 +24,6 @@ public class Aluno {
         final var media = calcularMedia();
         String statusDoAluno = media >= notaMinima ? "aprovado" : "reprovado";
 
-        System.out.printf("O aluno %s foi %s com média %.2f", nome, statusDoAluno, media);
+        System.out.printf("O aluno %s foi %s com média %.1f", nome, statusDoAluno, media);
     }
 }
