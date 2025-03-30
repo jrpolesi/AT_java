@@ -1,6 +1,6 @@
 package com.jrpolesi;
 
-import com.jrpolesi.exercicio9.Exercicio9;
+import com.jrpolesi.exercicio12.Exercicio12;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +12,9 @@ public class Main {
 //        Exercicio6.execute();
 //        Exercicio7.execute();
 //        Exercicio8.execute();
-        Exercicio9.execute();
+//        Exercicio9.execute();
+//        Exercicio10.execute();
+//        Exercicio11.execute();
+        Exercicio12.execute();
     }
 }
