@@ -1,6 +1,7 @@
 package com.jrpolesi.exercicio10;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Exercicio10 {
 
         final var produtos = new ArrayList<Produto>();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             final var produto = inputProduto(scanner);
             System.out.println("------------------");
             produtos.add(produto);
@@ -26,9 +27,9 @@ public class Exercicio10 {
 
     private static Produto inputProduto(Scanner scanner) {
         System.out.println("Cadastrar produto");
-        final var nome = inputTypeString(scanner, "Digite o nome do produto:");
-        final var quantidade = inputTypeInt(scanner, "Digite a quantidade do produto:");
-        final var preco = inputTypeDouble(scanner, "Digite o preço do produto:");
+        final var nome = inputTypeString(scanner, "Digite o nome do produto: ");
+        final var quantidade = inputTypeInt(scanner, "Digite a quantidade do produto: ");
+        final var preco = inputTypeDouble(scanner, "Digite o preço do produto: ");
 
         return new Produto(nome, quantidade, preco);
     }
@@ -38,7 +39,6 @@ public class Exercicio10 {
             final var writter = new BufferedWriter(new FileWriter("compras.txt"));
 
             for (Produto produto : produtos) {
-                System.out.println(produto.toString());
                 final var row = String.format("%s,%d,%.2f", produto.nome(), produto.quantidade(), produto.preco());
                 writter.write(row);
                 writter.newLine();
@@ -53,17 +53,16 @@ public class Exercicio10 {
         System.out.println("\nListando produtos...");
 
         try {
-            final var reader = new Scanner("compras.txt");
+            final var reader = new Scanner(new File("compras.txt"));
             while (reader.hasNextLine()) {
                 final var line = reader.nextLine();
                 final var values = line.split(",");
-
                 final var nome = values[0];
                 final var quantidade = Integer.parseInt(values[1]);
                 final var preco = Double.parseDouble(values[2]);
 
                 final var produto = new Produto(nome, quantidade, preco);
-                System.out.println(produto.toString());
+                System.out.println(produto);
             }
             reader.close();
         } catch (Exception e) {
@@ -72,12 +71,12 @@ public class Exercicio10 {
     }
 
     private static String inputTypeString(Scanner scanner, String message) {
-        System.out.println(message);
+        System.out.print(message);
         return scanner.nextLine();
     }
 
     private static double inputTypeDouble(Scanner scanner, String message) {
-        System.out.println(message);
+        System.out.print(message);
         final var result = scanner.nextDouble();
         scanner.nextLine();
 
@@ -85,7 +84,7 @@ public class Exercicio10 {
     }
 
     private static int inputTypeInt(Scanner scanner, String message) {
-        System.out.println(message);
+        System.out.print(message);
         final var result = scanner.nextInt();
         scanner.nextLine();
 

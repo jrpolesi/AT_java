@@ -9,7 +9,7 @@ public class Exercicio4 {
         final var name = inputTypeString(scanner, "Digite seu nome:");
 
         final var value = inputTypeDouble(scanner, "Digite o valor do empréstimo:");
-        final var installments = inputTypeInt(scanner, "Digite a quantidade de parcelas:");
+        final var installments = inputTypeInt(scanner, "Digite a quantidade de parcelas: (entre 6 e 48)");
 
         if (installments < 6 || installments > 48) {
             System.out.println("A quantidade de parcelas deve ser entre 6 e 48");
@@ -18,8 +18,8 @@ public class Exercicio4 {
 
         scanner.close();
 
-        final var monthlyValue = calculateMonthlyValue(value);
-        final var totalValue = calculateTotalValue(value, installments);
+        final var monthlyValue = calculateMonthlyValue(value, installments);
+        final var totalValue = calculateTotalValue(monthlyValue, installments);
 
         System.out.println("--------------------");
         System.out.printf("Olá %s\n", name);
@@ -27,9 +27,10 @@ public class Exercicio4 {
         System.out.printf("O valor total é R$%.2f\n", totalValue);
     }
 
-    private static double calculateMonthlyValue(double value) {
-        int monthlyTax = 3 / 100;
-        return value * monthlyTax;
+    private static double calculateMonthlyValue(double value, int installments) {
+        final var monthlyTax = 3.0 / 100;
+        final var monthly = (value / installments);
+        return monthly + (monthly * monthlyTax);
     }
 
     private static double calculateTotalValue(double value, int installments) {
